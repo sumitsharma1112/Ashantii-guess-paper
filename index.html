@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashantii Guess Papers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Fira+Code&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --deep: #16213e;
+    --accent: #e94560;
+    --gold: #f5a623;
+    --teal: #0f9b8e;
+    --lavender: #a29bfe;
+    --soft-bg: #f8f7f2;
+    --card-bg: #ffffff;
+    --muted: #6c757d;
+    --border: #e0ddd8;
+    --highlight: #fff8e7;
+    --q-bg: #eef6ff;
+    --passage-bg: #f0faf8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--soft-bg);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    background: var(--ink);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(233,69,96,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(162,155,254,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 90%, rgba(15,155,142,0.12) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 39px,
+      rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 39px,
+      rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px
+    );
+    pointer-events: none;
+  }
+
+  .hero-brand {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .hero-brand .letter-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 10vw, 110px);
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    display: inline-block;
+    animation: popIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  }
+
+  .hero-brand .letter-big.last {
+    color: var(--gold);
+    animation-delay: 0.15s;
+  }
+
+  .hero-brand .letter-mid {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    display: inline-block;
+    letter-spacing: 2px;
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.1s;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  @keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+
+  .hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+
+  .hero-meta {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+
+  .hero-tag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 5px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-tag.accent { background: rgba(233,69,96,0.2); border-color: rgba(233,69,96,0.4); color: #f7a5b0; }
+  .hero-tag.teal   { background: rgba(15,155,142,0.2); border-color: rgba(15,155,142,0.4); color: #7dd8d3; }
+  .hero-tag.gold   { background: rgba(245,166,35,0.2); border-color: rgba(245,166,35,0.4); color: #fcd280; }
+
+  /* ── NOTE BANNER ── */
+  .notice-bar {
+    background: linear-gradient(135deg, #fff8e7 0%, #fff3d0 100%);
+    border-left: 4px solid var(--gold);
+    padding: 12px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a5900;
+    text-align: center;
+  }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--card-bg);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 14px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+  .tab-btn:hover { color: var(--ink); background: var(--soft-bg); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(233,69,96,0.04); }
+  .tab-btn.set2.active { color: var(--teal); border-bottom-color: var(--teal); background: rgba(15,155,142,0.04); }
+
+  /* ── MAIN LAYOUT ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .paper-section { display: none; }
+  .paper-section.active { display: block; }
+
+  /* ── PAPER HEADER ── */
+  .paper-header {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .paper-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), var(--teal));
+  }
+  .paper-header.set2::before {
+    background: linear-gradient(90deg, var(--teal), var(--lavender), var(--gold));
+  }
+
+  .paper-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .paper-code {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .paper-meta-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 18px;
+    background: var(--soft-bg);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ── GENERAL INSTRUCTIONS ── */
+  .instructions {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+  }
+  .instructions-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .instructions li {
+    list-style: none;
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 14px;
+  }
+  .instructions li::before {
+    content: counter(inst);
+    counter-increment: inst;
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 13px;
+  }
+  .instructions ol { counter-reset: inst; }
+  .instructions .sub-list {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+  .instructions .sub-list li::before { content: '–'; color: var(--teal); font-weight: 600; }
+
+  /* ── SECTION BLOCK ── */
+  .section-block {
+    margin-bottom: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .section-header.reading { background: linear-gradient(135deg, #e8f4fd, #dbeeff); color: #1a6fa8; border-left: 4px solid #2196f3; }
+  .section-header.grammar { background: linear-gradient(135deg, #f3e8ff, #ead6ff); color: #6a1b9a; border-left: 4px solid #9c27b0; }
+  .section-header.writing { background: linear-gradient(135deg, #e8fff3, #d4f5e2); color: #1b6b3a; border-left: 4px solid #4caf50; }
+  .section-header.literature { background: linear-gradient(135deg, #fff3e0, #ffe0b0); color: #8b4513; border-left: 4px solid var(--gold); }
+
+  .section-marks {
+    margin-left: auto;
+    background: rgba(0,0,0,0.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .q-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+    background: var(--q-bg);
+  }
+  .q-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Playfair Display', serif;
+  }
+  .q-num.teal-num { background: var(--teal); }
+  .q-num.gold-num { background: var(--gold); color: var(--ink); }
+  .q-num.purple-num { background: #8b5cf6; }
+
+  .q-instr { flex: 1; font-size: 14.5px; font-weight: 500; color: var(--ink); padding-top: 6px; }
+  .q-marks {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(233,69,96,0.1);
+    color: var(--accent);
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+  .q-marks.teal { background: rgba(15,155,142,0.1); color: var(--teal); }
+  .q-marks.gold { background: rgba(245,166,35,0.15); color: #a06800; }
+
+  .q-card-body { padding: 20px 22px; }
+
+  /* ── PASSAGE ── */
+  .passage {
+    background: var(--passage-bg);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    border-left: 3px solid var(--teal);
+  }
+  .passage-para {
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    color: #2d3748;
+    text-align: justify;
+  }
+  .passage-para:last-child { margin-bottom: 0; }
+  .para-num {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .passage-credit {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  /* ── DATA TABLE ── */
+  .data-table-wrap { overflow-x: auto; margin: 14px 0; border-radius: 10px; border: 1px solid var(--border); }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .data-table th {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    padding: 11px 14px;
+    font-weight: 600;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--soft-bg); }
+  .data-table-title { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 8px; text-align: center; letter-spacing: 0.5px; }
+
+  /* ── SUB QUESTIONS ── */
+  .sub-questions { list-style: none; }
+  .sub-q {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    background: #fafafa;
+    position: relative;
+  }
+  .sub-q-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--ink);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .sub-q-top { display: flex; align-items: flex-start; gap: 0; margin-bottom: 8px; }
+  .sub-q-text { font-size: 14px; line-height: 1.7; flex: 1; padding-top: 4px; }
+  .sub-q-marks {
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 20px;
+    position: absolute;
+    top: 14px; right: 14px;
+  }
+
+  /* ── OPTIONS ── */
+  .options { margin-top: 10px; padding-left: 38px; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid #e8e8e8;
+    background: white;
+    font-size: 13.5px;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .option:hover { background: #f0f7ff; border-color: #b3d4ff; }
+  .opt-label {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── OR DIVIDER ── */
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 18px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+  .or-divider::before, .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+  .or-text {
+    padding: 6px 16px;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    background: white;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── EXTRACT CARD ── */
+  .extract {
+    background: linear-gradient(135deg, #fffdf5, #fff8e7);
+    border: 1px solid #f0e0a0;
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    font-size: 14.5px;
+    font-style: italic;
+    line-height: 1.9;
+    color: #3d2b00;
+  }
+  .extract-source {
+    font-size: 12px;
+    font-style: normal;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0c060;
+    font-weight: 600;
+  }
+
+  /* ── POETRY EXTRACT ── */
+  .poetry-extract {
+    background: linear-gradient(135deg, #f5f0ff, #ede8ff);
+    border: 1px solid #c9b8ff;
+    border-left: 4px solid var(--lavender);
+    border-radius: 10px;
+    padding: 18px 28px;
+    margin-bottom: 14px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 2.1;
+    color: #2d1b6e;
+  }
+  .poetry-line { display: block; }
+  .poetry-source {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #b8a8e8;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* ── PROFILE CARD ── */
+  .profile-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .profile-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--soft-bg);
+  }
+  .profile-name span { color: var(--accent); }
+
+  /* ── SMALL FILL TABLE ── */
+  .fill-table { border-collapse: collapse; margin-top: 10px; }
+  .fill-table th, .fill-table td {
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 13.5px;
+    text-align: left;
+  }
+  .fill-table th { background: var(--soft-bg); font-weight: 700; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .fill-table .fill-cell { min-width: 160px; }
+
+  /* ── LONG ANS PROMPT ── */
+  .long-ans-box {
+    background: linear-gradient(135deg, #f8f0ff, #f0f8ff);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+    line-height: 1.8;
+    border: 1px dashed #c0a0e0;
+    color: var(--ink);
+  }
+  .word-limit {
+    display: inline-block;
+    background: var(--lavender);
+    color: white;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px; height: 44px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(233,69,96,0.4);
+    transition: transform 0.2s, opacity 0.2s;
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .scroll-top.visible { opacity: 1; pointer-events: all; }
+  .scroll-top:hover { transform: scale(1.1) translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+  }
+  footer span { color: var(--accent); font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .paper-meta-row { flex-direction: column; gap: 6px; font-size: 13px; }
+    .q-card-head { padding: 14px 16px; }
+    .q-card-body { padding: 16px; }
+    .passage { padding: 16px; }
+    .options { padding-left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-brand">
+    <span class="letter-big">A</span><span class="letter-mid">SHANTI</span><span class="letter-big last">I</span>
+  </div>
+  <div class="hero-subtitle">Guess Papers · CBSE Class X · English Language &amp; Literature</div>
+  <div class="hero-meta">
+    <span class="hero-tag accent">Code No. 184</span>
+    <span class="hero-tag teal">Session 2025–26</span>
+    <span class="hero-tag gold">80 Marks · 3 Hours</span>
+    <span class="hero-tag">2 Full-Length Papers</span>
+  </div>
+</div>
+
+<!-- ── NOTICE ── -->
+<div class="notice-bar">
+  📌 &nbsp;Please note that the assessment scheme of the Academic Session 2024–25 will continue in the current session i.e. 2025–26
+</div>
+
+<!-- ── TABS ── -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchPaper('set1', this)">📄 Guess Paper Set 1</button>
+  <button class="tab-btn set2" onclick="switchPaper('set2', this)">📄 Guess Paper Set 2</button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SET 1
+════════════════════════════════════════════ -->
+<div class="container">
+<div id="set1" class="paper-section active">
+
+  <!-- Paper Header -->
+  <div class="paper-header">
+    <div class="paper-title">English Language and Literature — Guess Paper Set 1</div>
+    <div class="paper-code">Code No. 184 &nbsp;|&nbsp; Class X (2025–26)</div>
+    <div class="paper-meta-row">
+      <span>⏱ Time Allowed: 3 Hours</span>
+      <span>✏️ Maximum Marks: 80</span>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions">
+    <div class="instructions-title">General Instructions</div>
+    <ol>
+      <li>This question paper comprises 11 questions. All questions are compulsory.</li>
+      <li>The question paper contains THREE sections –
+        <ul class="sub-list">
+          <li>Section – A: Reading Skills</li>
+          <li>Section – B: Grammar and Creative Writing Skills</li>
+          <li>Section – C: Literature Textbook</li>
+        </ul>
+      </li>
+      <li>Attempt questions based on specific instructions for each Part.</li>
+    </ol>
+  </div>
+
+  <!-- ══ SECTION A ══ -->
+  <div class="section-block">
+    <div class="section-header reading">📖 Section A — Reading Skills <span class="section-marks">20 Marks</span></div>
+
+    <!-- Q1 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num">1</div>
+        <div class="q-instr">Read the following passage carefully.</div>
+        <div class="q-marks">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="passage">
+          <div class="passage-para"><span class="para-num">1</span>In today's fast-paced world, mental health has emerged as one of the most pressing public health concerns. The World Health Organization estimates that nearly one billion people globally live with some form of mental disorder, yet a vast majority of them receive no treatment whatsoever. This treatment gap, driven by stigma, lack of awareness, and insufficient healthcare resources, continues to grow, demanding urgent and sustained attention from governments, communities, and individuals alike.</div>
+          <div class="passage-para"><span class="para-num">2</span>Stigma remains one of the most formidable barriers to mental health care. People suffering from conditions such as depression, anxiety, or schizophrenia often face social ostracism and discrimination. This discourages them from seeking help and forces them into silence. In many cultures, mental illness is wrongly associated with weakness of character or lack of willpower, further deepening the shame felt by sufferers. Changing these perceptions requires a concerted effort from educational institutions, media, and public figures to promote empathetic and scientifically informed narratives about mental health.</div>
+          <div class="passage-para"><span class="para-num">3</span>Beyond stigma, the lack of trained mental health professionals is a critical issue. In low- and middle-income countries, the ratio of psychiatrists to the general population is strikingly low—sometimes as few as one psychiatrist for every hundred thousand people. This stark disparity means that even those who overcome stigma and seek help may find no professional available to assist them. Expanding mental health training programmes and integrating mental health services into primary healthcare systems are vital steps toward bridging this gap.</div>
+          <div class="passage-para"><span class="para-num">4</span>Technology, however, offers a promising avenue for addressing these challenges. Mobile-based mental health applications, online therapy platforms, and helplines have made support more accessible than ever before, particularly for young people who are comfortable with digital tools. Studies have shown that cognitive behavioural therapy delivered digitally can be as effective as in-person therapy for mild to moderate conditions. Governments and organisations must therefore invest in and regulate these digital solutions to ensure they are safe, effective, and equitable.</div>
+          <div class="passage-para"><span class="para-num">5</span>Schools and workplaces also bear an important responsibility. Introducing mental health literacy programmes in school curricula can equip young people with the vocabulary and tools to understand their emotions and seek help without shame. Similarly, workplace wellness initiatives—such as flexible work schedules, employee assistance programmes, and peer support networks—can significantly reduce the incidence of burnout and anxiety among working adults.</div>
+          <div class="passage-para"><span class="para-num">6</span>Ultimately, addressing the mental health crisis requires a multi-pronged strategy that encompasses education, policy reform, technological innovation, and cultural change. Mental health is not a peripheral concern—it is central to human dignity, productivity, and social cohesion. A society that invests in the mental wellbeing of its citizens is a society that invests in its own future.</div>
+          <div class="passage-credit">Created for academic usage / 420 words</div>
+        </div>
+
+        <p style="font-size:14px;font-weight:600;margin-bottom:14px;">Answer the following questions, based on the passage above.</p>
+        <ul class="sub-questions">
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Why does the author describe the mental health treatment gap as something that 'demands urgent and sustained attention'? (Paragraph 1)</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">According to paragraph 1, the treatment gap exists due to all the following EXCEPT:</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options">
+              <div class="option"><span class="opt-label">A</span> social stigma</div>
+              <div class="option"><span class="opt-label">B</span> lack of awareness</div>
+              <div class="option"><span class="opt-label">C</span> insufficient healthcare resources</div>
+              <div class="option"><span class="opt-label">D</span> unavailability of digital tools</div>
+            </div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Complete the following by selecting the correct option from those given in the brackets.<br>The cultural association of mental illness with 'weakness of character' makes the stigma surrounding it ________ <em>(weaker / deeper)</em>. (Paragraph 2)</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Select the option that is <strong>True</strong> from (a)–(c) given for what the phrase <em>'concerted effort'</em> suggests in paragraph 2.</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options">
+              <div class="option"><span class="opt-label">A</span> Individual efforts made quietly and without media attention</div>
+              <div class="option"><span class="opt-label">B</span> A combined and coordinated effort from multiple stakeholders simultaneously</div>
+              <div class="option"><span class="opt-label">C</span> Efforts that focus exclusively on medical professionals and psychiatrists</div>
+            </div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Complete the analogy by selecting the correct option (a) or (b). (Paragraph 3)<br><br>treatment gap : insufficient professionals :: _________ : _________<br><br>(a) stigma : silence &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (b) technology : inequity</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Why is the integration of mental health services into primary healthcare considered a 'vital step'? (Paragraph 3)</span></div>
+            <div class="sub-q-marks">2</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">What are the main ideas of paragraph 4 and paragraph 5?<br><br>
+            i) Technology provides both opportunities and risks for mental health support.<br>
+            ii) Schools and workplaces have no meaningful role in mental health improvement.<br>
+            iii) Digital tools can make mental health support more accessible, especially for youth.<br>
+            iv) Schools and workplaces can create structured environments that support mental wellbeing.<br>
+            v) Workplace wellness programmes are the only effective solution to burnout.<br><br>Select the correct option.</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options" style="padding-left:0;">
+              <div class="option"><span class="opt-label">A</span> Para 4 → i &nbsp;&nbsp; Para 5 → ii</div>
+              <div class="option"><span class="opt-label">B</span> Para 4 → v &nbsp;&nbsp; Para 5 → iv</div>
+              <div class="option"><span class="opt-label">C</span> Para 4 → iii &nbsp; Para 5 → iv</div>
+              <div class="option"><span class="opt-label">D</span> Para 4 → ii &nbsp;&nbsp; Para 5 → v</div>
+            </div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">Why is it not sufficient for only governments to address the mental health crisis? What does the author suggest must also change? (Paragraph 6)</span></div>
+            <div class="sub-q-marks">2</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num teal-num">2</div>
+        <div class="q-instr">Read the following case-based passage.</div>
+        <div class="q-marks teal">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="passage">
+          <div class="passage-para"><span class="para-num">1</span>A survey conducted in 2024 across four Indian metros—Delhi, Mumbai, Bengaluru, and Chennai—explored the internet usage patterns of school students aged 12 to 17. The study aimed to understand how students use the internet for academic purposes versus recreational activities, and the extent to which parents monitor their children's digital behaviour.</div>
+          <div class="passage-para"><span class="para-num">2</span>The data revealed significant differences across cities. In Delhi, 72% of students reported using the internet primarily for studying, while in Mumbai the figure was slightly lower at 65%. Bengaluru led with 78% of students using it mainly for academics, whereas Chennai showed a more balanced split, with 55% for academics and 45% for recreation. Across all four cities, social media consumption dominated recreational use, followed by gaming and video streaming.</div>
+          <div class="passage-para"><span class="para-num">3</span>Parental monitoring showed considerable variation. In Mumbai, 80% of parents said they actively tracked their child's screen time, making it the most supervised city. Delhi followed with 68%, while Bengaluru and Chennai reported lower parental monitoring at 58% and 52% respectively. Students in cities with higher parental oversight also reported better sleep patterns and higher academic performance scores, suggesting a possible correlation between supervision and student wellbeing.</div>
+          <div class="passage-para"><span class="para-num">4</span>The survey also found that students spending more than four hours daily on recreational internet use reported higher levels of stress and difficulty concentrating in class. Experts recommend that schools integrate digital literacy programmes that teach students to regulate their online behaviour. The findings underscore the need for a collaborative approach—involving parents, schools, and policymakers—to ensure that digital access enhances rather than undermines student development.</div>
+          <div class="passage-credit">Created for academic usage / 240 words</div>
+        </div>
+
+        <div class="data-table-title">Table: Internet Usage and Parental Monitoring — Four Indian Metro Cities (2024)</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>City</th><th>Academic Use (%)</th><th>Recreational Use (%)</th><th>Parental Monitoring (%)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Delhi</td><td>72</td><td>28</td><td>68</td></tr>
+              <tr><td>Mumbai</td><td>65</td><td>35</td><td>80</td></tr>
+              <tr><td>Bengaluru</td><td>78</td><td>22</td><td>58</td></tr>
+              <tr><td>Chennai</td><td>55</td><td>45</td><td>52</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:14px;font-weight:600;margin:18px 0 12px;">Answer the following questions, based on the passage above.</p>
+        <ul class="sub-questions">
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Why did the study most likely include data on parental monitoring alongside academic and recreational internet use? (Paragraph 1)<br>This is so because parental monitoring ____.</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options">
+              <div class="option"><span class="opt-label">A</span> reflects the economic background of families in each city</div>
+              <div class="option"><span class="opt-label">B</span> helps determine whether oversight influences students' digital habits and outcomes</div>
+              <div class="option"><span class="opt-label">C</span> was requested by students themselves as a measure of comparison</div>
+              <div class="option"><span class="opt-label">D</span> was included only to compare the four cities in terms of parental strictness</div>
+            </div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Identify the phrase in paragraph 1 that conveys the patterns of how students divide their online time between study and play.</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Complete the following by selecting the correct option from those given in the brackets. (Paragraph 2)<br>Arjun, aged 14, from Bengaluru, uses the internet mostly for his projects and assignments. His pattern is consistent with the survey finding that ________ <em>(78% / 55%)</em> of students there primarily use the internet for academics.</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">What does 'parental oversight' mean in the context of paragraph 3?</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Complete the following with the correct option. When the writer says <em>'possible correlation'</em> in paragraph 3, s/he means that ____.</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options">
+              <div class="option"><span class="opt-label">A</span> parental monitoring is the only factor responsible for good academic performance</div>
+              <div class="option"><span class="opt-label">B</span> there may be a meaningful relationship between supervision and student wellbeing, but it has not been definitively proven</div>
+              <div class="option"><span class="opt-label">C</span> students in all cities perform equally well regardless of parental involvement</div>
+              <div class="option"><span class="opt-label">D</span> cities with low parental monitoring produce better academic results</div>
+            </div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Complete the following appropriately. (Paragraph 4)<br>One likely reason why students who spend more than four hours on recreational internet use struggle to concentrate is ____________________.</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">How are 'digital literacy' and 'self-regulation of online behaviour' connected? (Paragraph 4)</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">Elaborate on why the survey recommends a 'collaborative approach' rather than placing responsibility on a single stakeholder. (Paragraph 4)</span></div>
+            <div class="sub-q-marks">2</div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">IX</span><span class="sub-q-text">Fill in the blank with ONE suitable word. (Paragraph 4)<br>Effective digital literacy programmes make students more ________ in managing their time and online activities.</span></div>
+            <div class="sub-q-marks">1</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- end section A -->
+
+  <!-- ══ SECTION B GRAMMAR ══ -->
+  <div class="section-block">
+    <div class="section-header grammar">✏️ Section B — Grammar &amp; Creative Writing Skills <span class="section-marks">20 Marks</span></div>
+    <div class="section-header grammar" style="margin-top:-10px;font-size:12px;">Grammar <span class="section-marks">10 Marks</span></div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num purple-num">3</div>
+        <div class="q-instr">Complete any <strong>ten of twelve</strong> of the following tasks, as directed.</div>
+        <div class="q-marks" style="background:rgba(139,92,246,0.1);color:#7c3aed;">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Fill in the blank using the correct form of the word in the bracket for the given sentence from a travel brochure:<br><em>The exhibition hall is currently _____ (renovate) to accommodate more visitors next season.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Identify the error and write the correction in the given sentence from a motivational poster:<br><em>"Success is a journey, not the destination."</em><br>Use the format given below:</span></div>
+            <div class="sub-q-marks">1</div>
+            <div style="margin-top:10px;overflow-x:auto;">
+              <table class="fill-table"><tr><th class="fill-cell">Error</th><th class="fill-cell">Correction</th></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>
+            </div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Fill in the blank with the correct form of the verb given in the brackets.<br><em>By the time the rescue team arrived, the volunteers _____ (already / distribute) all the relief supplies.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Read the given statement and report it correctly by completing the following:<br><em>The teacher said to the students, 'You must submit your portfolios before the winter break.'</em><br>The teacher told the students that _____.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Fill in the blank by choosing the correct option to complete the sentence from a school notice:<br><em>All students are hereby informed that the annual sports day will be held _____ the school grounds on 15th November.</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">A</span>on</div><div class="option"><span class="opt-label">B</span>in</div><div class="option"><span class="opt-label">C</span>at</div><div class="option"><span class="opt-label">D</span>over</div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Report the following by completing the sentence correctly:<br><em>'Do not open the examination booklet before the signal is given,' the invigilator instructed the students.</em><br>The invigilator instructed the students _____.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">Complete the given statement by filling the blank with the correct option:<br><em>After training for months, Priya felt _____ confident about performing at the national level competition.</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">A</span>enough</div><div class="option"><span class="opt-label">B</span>sufficiently</div><div class="option"><span class="opt-label">C</span>too</div><div class="option"><span class="opt-label">D</span>very much</div></div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">The given sentence has an error. Select the option that correctly identifies the error and the correction:<br><em>Neither of the two proposals were accepted by the committee.</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options" style="padding-left:0;"><div class="option"><span class="opt-label">A</span>Error: <em>were</em> → Correction: <em>was</em></div><div class="option"><span class="opt-label">B</span>Error: <em>proposals</em> → Correction: <em>proposal</em></div><div class="option"><span class="opt-label">C</span>Error: <em>two</em> → Correction: <em>both</em></div><div class="option"><span class="opt-label">D</span>Error: <em>accepted</em> → Correction: <em>accepting</em></div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IX</span><span class="sub-q-text">Report the following question:<br><em>He asked his colleague, 'Have you submitted the quarterly report yet?'</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">X</span><span class="sub-q-text">Fill in the blank with the correct option from those given in the brackets:<br><em>You _____ (should / ought to) have informed the organisers about the change in schedule earlier.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">XI</span><span class="sub-q-text">Fill in the blank to complete the sentence from a school announcement by choosing the correct option:<br><em>_____ the students who participated in the inter-school quiz are requested to collect their certificates from the office.</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">A</span>All of</div><div class="option"><span class="opt-label">B</span>Each of</div><div class="option"><span class="opt-label">C</span>Either</div><div class="option"><span class="opt-label">D</span>Neither of</div></div>
+          </li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">XII</span><span class="sub-q-text">Choose the correct option to fill the blank:<br><em>There was _____ time left before the curtain rose, so the performers hurried backstage.</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">A</span>few</div><div class="option"><span class="opt-label">B</span>little</div><div class="option"><span class="opt-label">C</span>least</div><div class="option"><span class="opt-label">D</span>many</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Writing -->
+    <div class="section-header writing" style="margin-top:20px;">✍️ Writing <span class="section-marks">10 Marks</span></div>
+    <div class="notice-bar" style="border-radius:8px;margin-bottom:16px;font-size:12px;">NOTE: All details presented in the questions in the writing section are imaginary and created for assessment purposes.</div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num" style="background:#4caf50;">4A</div>
+        <div class="q-instr">Letter Writing — Choose <strong>either 4A or 4B</strong></div>
+        <div class="q-marks" style="background:rgba(76,175,80,0.1);color:#2e7d32;">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="long-ans-box">As <strong>Nikhil/Nisha</strong>, President of the Environment Club of Sunrise Public School, you are deeply concerned about the alarming increase in plastic waste in your city's water bodies. Write a letter to the <strong>Municipal Commissioner</strong>, in about 120 words, highlighting the environmental dangers of plastic pollution and urging the authorities to implement a strict plastic ban and organise community clean-up drives. <span class="word-limit">~120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">As <strong>Tanveer/Tanya</strong>, a Class X student of Horizon International School, you are alarmed by the rise of cyberbullying incidents among teenagers in your neighbourhood. Write a letter to the <strong>editor of a national daily</strong>, in about 120 words, explaining the psychological impact of cyberbullying on young people and proposing measures that schools, parents, and social media platforms must take to prevent it. <span class="word-limit">~120 words</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num" style="background:#4caf50;">5A</div>
+        <div class="q-instr">Analytical Paragraph — Choose <strong>either 5A or 5B</strong></div>
+        <div class="q-marks" style="background:rgba(76,175,80,0.1);color:#2e7d32;">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <p style="font-size:14px;margin-bottom:14px;">You are the Cultural Secretary of your school. Two artists—<strong>Ms. Rohini Sinha</strong> and <strong>Mr. Deepak Verma</strong>—have expressed their interest in conducting an art workshop for your school's Annual Talent Week. Read the excerpts from their proposals below.</p>
+
+        <div class="profile-card">
+          <div class="profile-name"><span>Excerpt 1</span> — Ms. Rohini Sinha</div>
+          <em>"…I am delighted to offer my services for your Annual Talent Week. With fifteen years of experience as a visual artist and art educator, I have conducted workshops in over fifty schools across India. My sessions focus on traditional Indian art forms such as Warli, Madhubani, and Pattachitra, and are designed to make students appreciate indigenous artistic heritage. I have received commendations from the Ministry of Education for my contribution to art literacy among school students…"</em>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-name"><span>Excerpt 2</span> — Mr. Deepak Verma</div>
+          <em>"…I would be honoured to conduct a workshop at your esteemed institution. I specialise in digital art and modern graphic design, with experience working for top advertising agencies and media houses. My workshops are highly interactive, incorporating technology to create art using tablets and design software. I have worked with students in urban schools to help them explore art as a potential career path in the creative industries…"</em>
+        </div>
+
+        <div class="long-ans-box" style="margin-top:14px;">Analyse the information in a paragraph, justifying which artist would be a better choice for the workshop. Consider factors such as experience, relevance to school context, student engagement, and the purpose of the Talent Week. <span class="word-limit">~120 words</span></div>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:14px;margin-bottom:14px;"><strong>Rohan</strong>, Class X, is hardworking, data-driven, and excels in logical reasoning. However, he sometimes struggles with creative thinking and tends to be overly detail-focused. He must choose a teammate for a Science-Society project requiring both analytical research and creative presentation. His options are:</p>
+
+        <div class="profile-card">
+          <div class="profile-name"><span>Aakash</span></div>
+          Highly creative and quick to generate out-of-the-box solutions. His presentations are visually stunning but he sometimes lacks thoroughness in research and data handling.
+        </div>
+        <div class="profile-card">
+          <div class="profile-name"><span>Priya</span></div>
+          Diligent and methodical with strong research skills. She is thorough but tends to prefer working independently and struggles to adapt to new ideas quickly.
+        </div>
+        <div class="profile-card">
+          <div class="profile-name"><span>Mia</span></div>
+          Confident communicator with a good balance of analytical and creative skills. She is adaptable and a natural team player but is relatively new to scientific data analysis.
+        </div>
+        <div class="long-ans-box" style="margin-top:14px;">Based on the features of each candidate, analyse and decide who would be the best partner for Rohan. Consider aspects such as complementary strengths, teamwork, and the project's requirements. <span class="word-limit">~120 words</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION C ══ -->
+  <div class="section-block">
+    <div class="section-header literature">📚 Section C — Literature Textbook <span class="section-marks">40 Marks</span></div>
+
+    <!-- Q6 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">6</div>
+        <div class="q-instr">Read the given extracts A and B and answer <strong>ANY ONE</strong> of the two.</div>
+        <div class="q-marks gold">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT A — Prose</p>
+        <div class="extract">
+          'There are so many things I am not allowed to do,' thought Nelson Mandela, 'I may not stay in the same hotel as a white person. I may not use the same entrance to a building. I may not ride the same bus. Yet today I stand here to take an oath as the first democratically elected President of this nation. It is an ideal for which I am prepared to die.' He looked out at the gathering and felt both the weight of history and the immense joy of a new beginning.
+          <div class="extract-source">Nelson Mandela: Long Walk to Freedom — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Contradict the claim that Mandela's feelings at his inauguration were purely celebratory.</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Which of the following best explains the phrase <em>'weight of history'</em> in the extract?</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">a</span>The enormous responsibility that came with leading a historically oppressed nation</div><div class="option"><span class="opt-label">b</span>The physical exhaustion Mandela felt after decades of imprisonment</div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">What can be inferred about Mandela's emotional state as he reflects on what he 'may not do'?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Identify the literary device used in the repeated structure of <em>'I may not…'</em></span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT B — Prose</p>
+        <div class="extract">
+          <strong>Noodle:</strong> (Enters nervously, carrying a scroll) Oh, Think-Tank, Great and Mighty Ruler of Mars, I come with most urgent news. Our probe has transmitted images from the planet Earth. We have discovered a vast depository of rectangular objects—thousands of them—arranged in rows, in buildings called 'libraries'.<br><br>
+          <strong>Think-Tank:</strong> (Puzzled) Rectangular objects? Can our chemical analysts determine what they are?<br><br>
+          <strong>Noodle:</strong> (Hesitating) They have tried, O Great One. They believe the objects are… used for communication. By placing them flat against the ear.<br><br>
+          <strong>Think-Tank:</strong> Hmm. (Solemnly) Then they must be communication sandwiches. Let all Martians eat one immediately!
+          <div class="extract-source">The Book That Saved the Earth — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">How does Think-Tank's reasoning about books reveal his character? Support your answer with evidence from the extract.</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">What is the comic effect of Noodle's hesitation when delivering the analysts' conclusion?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Select the option that correctly completes the following:<br>Think-Tank's instruction to 'eat' the books is comedic because it ____.</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">a</span>highlights how advanced Martian technology actually is</div><div class="option"><span class="opt-label">b</span>shows a logical error born from ignorance of books and reading culture</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">What does the word <em>'depository'</em> suggest about the role of libraries as described in the play?</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">7</div>
+        <div class="q-instr">Read the given extracts A and B and answer <strong>ANY ONE</strong> of the two.</div>
+        <div class="q-marks gold">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT A — Poetry</p>
+        <div class="poetry-extract">
+          <span class="poetry-line">'Don't', — and 'don't', — and 'don't', — and 'don't',</span>
+          <span class="poetry-line">That's all you ever say.</span>
+          <span class="poetry-line">I wish I could just be Amanda,</span>
+          <span class="poetry-line">Out of your moaning way.</span>
+          <div class="poetry-source">Amanda! — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">What emotions are most appropriately conveyed in this stanza?<br><br>i) longing for freedom &nbsp; ii) gratitude toward the speaker &nbsp; iii) silent rebellion and resentment &nbsp; iv) excitement about the future &nbsp; v) a desire to escape constant criticism</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options" style="padding-left:0;"><div class="option"><span class="opt-label">A</span>i, ii</div><div class="option"><span class="opt-label">B</span>i, iii, v</div><div class="option"><span class="opt-label">C</span>ii, iv</div><div class="option"><span class="opt-label">D</span>iii, iv, v</div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">What does the phrase <em>'your moaning way'</em> suggest about Amanda's perception of the speaker? Explain the use of the word <em>'moaning'</em>.</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Which phrase from the extract conveys the idea that Amanda feels her identity is suppressed?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Fill in the blank with a phrase to suitably complete the sentence:<br>The repetition of 'don't' in the poem reflects the _______ of Amanda's life at home.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT B — Poetry</p>
+        <div class="poetry-extract">
+          <span class="poetry-line">He stalks in his vivid stripes</span>
+          <span class="poetry-line">The few steps of his cage,</span>
+          <span class="poetry-line">On pads of velvet quiet,</span>
+          <span class="poetry-line">In his quiet rage.</span>
+          <div class="poetry-source">A Tiger in the Zoo — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">What does the poet imply by describing the tiger's pads as <em>'velvet quiet'</em>?</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>The tiger is exhausted and has given up trying to escape</div><div class="option"><span class="opt-label">B</span>The tiger moves silently, retaining natural grace even in captivity</div><div class="option"><span class="opt-label">C</span>The tiger's feet are covered in soft material provided by the zoo</div><div class="option"><span class="opt-label">D</span>The tiger is content and relaxed in the zoo environment</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Complete the following suitably:<br>The phrase <em>'quiet rage'</em> is an oxymoron because ____.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">How does the poet convey the tiger's helplessness through movement imagery in this stanza?</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Identify the phrase in the stanza that reflects both the tiger's power and its confinement.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">8</div>
+        <div class="q-instr">Answer <strong>ANY FOUR</strong> of the following five questions, in about 50 words each. <em>(First Flight)</em></div>
+        <div class="q-marks gold">4×3 = 12 marks</div>
+      </div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">In 'Nelson Mandela: Long Walk to Freedom', how does Mandela's understanding of courage evolve from his view as a young man to his mature philosophy? Refer to the text.</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">How does the poet use contrast between Amanda's imagined worlds and her real situation to build the central theme of the poem 'Amanda!'?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">In 'The Ball Poem', the poet says 'Money is external'. What deeper message about loss and growing up does this line convey in the context of the whole poem?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">In 'The Proposal', Chubukov initially resists Lomov's proposal but quickly changes his stance. What does this reveal about the values and social expectations of the time?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">How does Coorg's culture and its people's spirit contribute to the region's identity as described in 'Glimpses of India – Coorg'?</span></div><div class="sub-q-marks">3</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">9</div>
+        <div class="q-instr">Answer <strong>ANY TWO</strong> of the following three questions, in about 40–50 words. <em>(Footprints Without Feet)</em></div>
+        <div class="q-marks gold">2×3 = 6 marks</div>
+      </div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">How does 'Bholi' challenge the stereotypical image of a timid and voiceless girl? What enables Bholi to transform into a confident individual?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">In 'The Thief's Story', Hari Singh reflects that 'a man who cannot be trusted is good for nothing.' How does this thought foreshadow the climax of the story?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">In 'Footprints Without Feet', Griffin's invisibility, rather than being a blessing, becomes a source of suffering. Analyse how his actions across the story make this irony apparent.</span></div><div class="sub-q-marks">3</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">10</div>
+        <div class="q-instr">Answer <strong>ANY ONE</strong> of the following two questions, in about 100–120 words. <em>(First Flight)</em></div>
+        <div class="q-marks gold">1×6 = 6 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="long-ans-box">Poets often use the natural world to reflect on human experience. Examine how the poets in <strong>'The Trees'</strong> (Adrienne Rich) and <strong>'A Tiger in the Zoo'</strong> (Leslie Norris) use imagery of nature and captivity to comment on the theme of freedom and the desire to break free from confinement. <span class="word-limit">~100–120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">How do the three prose pieces under <strong>'Glimpses of India'</strong>—'A Baker from Goa', 'Coorg', and 'Tea from Assam'—collectively build a sense of national cultural pride? Discuss with reference to specific details from each piece. <span class="word-limit">~100–120 words</span></div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num gold-num">11</div>
+        <div class="q-instr">Answer <strong>ANY ONE</strong> of the following two questions, in about 100–120 words. <em>(Footprints Without Feet)</em></div>
+        <div class="q-marks gold">1×6 = 6 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="long-ans-box"><strong>'The Triumph of Surgery'</strong> uses humour to make a serious point about human foolishness and blind affection. Critically examine how Herriot constructs this irony and what lesson it leaves for the reader about responsible pet ownership and the limits of love. <span class="word-limit">~100–120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">In <strong>'Bholi'</strong>, the school and teacher are portrayed as transformative institutions. Compare this with the societal apathy Bholi faces at home and in the marriage market. What does the story ultimately say about the power of education versus the power of social conditioning? <span class="word-limit">~100–120 words</span></div>
+      </div>
+    </div>
+
+  </div><!-- end section C set1 -->
+</div><!-- end set1 -->
+
+
+<!-- ════════════════════════════════════════════
+     SET 2
+════════════════════════════════════════════ -->
+<div id="set2" class="paper-section">
+
+  <div class="paper-header set2">
+    <div class="paper-title">English Language and Literature — Guess Paper Set 2</div>
+    <div class="paper-code">Code No. 184 &nbsp;|&nbsp; Class X (2025–26)</div>
+    <div class="paper-meta-row">
+      <span>⏱ Time Allowed: 3 Hours</span>
+      <span>✏️ Maximum Marks: 80</span>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <div class="instructions-title">General Instructions</div>
+    <ol>
+      <li>This question paper comprises 11 questions. All questions are compulsory.</li>
+      <li>The question paper contains THREE sections –
+        <ul class="sub-list"><li>Section – A: Reading Skills</li><li>Section – B: Grammar and Creative Writing Skills</li><li>Section – C: Literature Textbook</li></ul>
+      </li>
+      <li>Attempt questions based on specific instructions for each Part.</li>
+    </ol>
+  </div>
+
+  <!-- SECTION A SET2 -->
+  <div class="section-block">
+    <div class="section-header reading">📖 Section A — Reading Skills <span class="section-marks">20 Marks</span></div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num">1</div>
+        <div class="q-instr">Read the following passage carefully.</div>
+        <div class="q-marks">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="passage">
+          <div class="passage-para"><span class="para-num">1</span>The concept of sustainable agriculture has steadily gained prominence over the past two decades, offering a compelling alternative to the resource-intensive practices of industrial farming. At its core, sustainable agriculture is the cultivation of crops and livestock in ways that maintain the health of the soil, minimise environmental impact, support the economic viability of farming communities, and ensure that future generations can meet their own food needs. Far from being a niche movement, it is now being recognised as a necessity by governments, scientists, and farmers worldwide.</div>
+          <div class="passage-para"><span class="para-num">2</span>One of the most significant advantages of sustainable agriculture is its emphasis on soil health. Industrial farming, with its heavy reliance on synthetic fertilisers and pesticides, has led to widespread soil degradation, reducing its fertility over time. Sustainable practices such as crop rotation, cover cropping, and composting restore essential nutrients, improve soil structure, and encourage the thriving of beneficial microorganisms. Healthy soil is not merely the foundation of productive farming—it is also a critical carbon sink, absorbing carbon dioxide and helping mitigate climate change.</div>
+          <div class="passage-para"><span class="para-num">3</span>Water conservation is another area where sustainable agriculture makes a meaningful impact. Traditional irrigation systems often result in massive water wastage through evaporation and runoff. Sustainable farmers, by contrast, adopt drip irrigation, rainwater harvesting, and watershed management techniques that make every drop count. In water-scarce regions, these innovations can mean the difference between crop failure and a reliable harvest. Moreover, by reducing chemical runoff into rivers and groundwater, sustainable farming also protects drinking water quality for rural and urban communities alike.</div>
+          <div class="passage-para"><span class="para-num">4</span>The economic dimension of sustainable agriculture is equally important. While initial investments in sustainable practices can be higher, the long-term financial benefits are considerable. Reduced dependence on expensive external inputs such as synthetic fertilisers and pesticides, combined with premium prices fetched by organic produce in both domestic and export markets, can significantly increase farmer incomes. Cooperative models and farmer producer organisations also allow small-scale farmers to access larger markets and negotiate better prices collectively.</div>
+          <div class="passage-para"><span class="para-num">5</span>Biodiversity is yet another crucial component of sustainable farming. Industrial monocultures—the practice of growing a single crop across vast tracts of land—have led to alarming declines in plant and animal species. Sustainable farms, in contrast, tend to maintain a diversity of crops, trees, and habitats that support a wide variety of wildlife. Agroforestry, in which trees and shrubs are integrated with crops and livestock, is a particularly effective approach, offering environmental benefits while also providing additional income streams for farmers.</div>
+          <div class="passage-para"><span class="para-num">6</span>Ultimately, the transition to sustainable agriculture requires not only technological innovation but a fundamental shift in how society values food production. Consumers, investors, and policymakers must collectively recognise that the cheapest food is rarely the most cost-effective when the hidden environmental and social costs are factored in. Supporting sustainable farming is not merely a choice—it is an investment in the long-term resilience of our food systems and our planet.</div>
+          <div class="passage-credit">Created for academic usage / 435 words</div>
+        </div>
+
+        <p style="font-size:14px;font-weight:600;margin-bottom:14px;">Answer the following questions, based on the passage above.</p>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Why does the author describe sustainable agriculture as a 'necessity' rather than a 'choice' in paragraph 1?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">According to paragraph 1, sustainable agriculture has all the following aims EXCEPT:</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options"><div class="option"><span class="opt-label">A</span>maintaining soil health</div><div class="option"><span class="opt-label">B</span>supporting farming community economies</div><div class="option"><span class="opt-label">C</span>replacing all existing farming with urban agriculture</div><div class="option"><span class="opt-label">D</span>ensuring future generations can meet food needs</div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Complete the following by selecting the correct option from those given in the brackets. (Paragraph 2)<br>Practices like crop rotation and composting improve soil quality, making sustainable farming more ________ <em>(destructive / productive)</em> in the long term.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Select the option that is <strong>True</strong> for what the phrase <em>'carbon sink'</em> suggests in paragraph 2.</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>Healthy soil absorbs and stores carbon dioxide, thereby helping to reduce greenhouse gases in the atmosphere</div><div class="option"><span class="opt-label">B</span>Healthy soil releases large amounts of carbon dioxide, contributing to global warming</div><div class="option"><span class="opt-label">C</span>Healthy soil is used primarily to store industrial carbon waste from factories</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Complete the analogy by selecting the correct option. (Paragraph 3)<br>drip irrigation : water conservation :: _________ : _________<br><br>(a) crop rotation : soil restoration &nbsp;&nbsp;&nbsp; (b) monoculture : biodiversity</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Why is reducing chemical runoff considered a dual benefit of sustainable water management? (Paragraph 3)</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">What are the main ideas of paragraph 4 and paragraph 5?<br><br>
+            i) Sustainable agriculture increases costs with no financial return<br>
+            ii) Cooperative models allow small farmers to access markets and earn more<br>
+            iii) Biodiversity in farms supports wildlife and provides income diversity<br>
+            iv) Industrial monocultures actually enhance biodiversity<br>
+            v) Sustainable agriculture is financially viable and economically beneficial for farmers<br><br>Select the correct option.</span></div>
+            <div class="sub-q-marks">1</div>
+            <div class="options" style="padding-left:0;"><div class="option"><span class="opt-label">A</span>Para 4 → i &nbsp;&nbsp; Para 5 → iv</div><div class="option"><span class="opt-label">B</span>Para 4 → v &nbsp;&nbsp; Para 5 → ii</div><div class="option"><span class="opt-label">C</span>Para 4 → ii &nbsp;&nbsp; Para 5 → iii</div><div class="option"><span class="opt-label">D</span>Para 4 → v &nbsp;&nbsp; Para 5 → iii</div></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">Why does the author argue that 'the cheapest food is rarely the most cost-effective'? What hidden costs does sustainable agriculture help society avoid? (Paragraph 6)</span></div><div class="sub-q-marks">2</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q2 SET2 -->
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num teal-num">2</div>
+        <div class="q-instr">Read the following case-based passage.</div>
+        <div class="q-marks teal">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="passage">
+          <div class="passage-para"><span class="para-num">1</span>A 2024 environmental study examined solid waste disposal patterns in five Indian cities—Jaipur, Kochi, Pune, Lucknow, and Bhopal. The study assessed the percentage of household waste that was composted, recycled, sent to landfills, or remained improperly disposed. The findings aimed to inform municipal waste management policy across urban India.</div>
+          <div class="passage-para"><span class="para-num">2</span>The data revealed that Kochi led in composting, with 45% of household waste being converted into compost, largely due to its well-established decentralised composting programme. Pune followed with 38%, benefiting from robust NGO participation and resident welfare association drives. Jaipur showed the highest recycling rate at 42%, helped by an active network of informal recyclers and formal kabadiwala systems. Lucknow and Bhopal, however, sent over 60% of their waste to landfills, pointing to significant gaps in infrastructure and public awareness.</div>
+          <div class="passage-para"><span class="para-num">3</span>Improper waste disposal—defined as waste dumped in public spaces or water bodies outside formal disposal channels—was most prevalent in Lucknow (18%) and Bhopal (15%), compared to Kochi (4%) and Pune (5%). Experts noted that improper disposal correlates closely with a lack of door-to-door waste collection coverage and insufficient public awareness campaigns.</div>
+          <div class="passage-para"><span class="para-num">4</span>The study concludes that cities with strong community engagement and dedicated municipal investment in waste infrastructure consistently outperform those relying primarily on landfills. Scaling up composting, recycling, and door-to-door collection programmes—along with sustained public education campaigns—is essential if India is to achieve its target of zero-waste cities by 2035.</div>
+          <div class="passage-credit">Created for academic usage / 245 words</div>
+        </div>
+
+        <div class="data-table-title">Table: Solid Waste Disposal Patterns — Five Indian Cities (2024)</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>City</th><th>Composted (%)</th><th>Recycled (%)</th><th>Landfill (%)</th><th>Improper Disposal (%)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Jaipur</td><td>28</td><td>42</td><td>26</td><td>4</td></tr>
+              <tr><td>Kochi</td><td>45</td><td>28</td><td>23</td><td>4</td></tr>
+              <tr><td>Pune</td><td>38</td><td>35</td><td>22</td><td>5</td></tr>
+              <tr><td>Lucknow</td><td>12</td><td>18</td><td>62</td><td>18</td></tr>
+              <tr><td>Bhopal</td><td>16</td><td>16</td><td>68</td><td>15</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:14px;font-weight:600;margin:18px 0 12px;">Answer the following questions, based on the passage above.</p>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Why did the study most likely choose to include both composting and recycling as separate categories? (Paragraph 1)<br>This is so because composting and recycling ____.</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>are identical processes and are used interchangeably in all cities</div><div class="option"><span class="opt-label">B</span>are distinct methods of waste reduction that reveal different aspects of a city's sustainability efforts</div><div class="option"><span class="opt-label">C</span>are less significant than landfill use and were included for comparison only</div><div class="option"><span class="opt-label">D</span>were the only categories that showed variation across the cities surveyed</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Identify the phrase in paragraph 2 that conveys the mechanism behind Jaipur's high recycling rate.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Complete the following by selecting the correct option from those given in the brackets. (Paragraph 2)<br>A student researching best practices in composting would most likely recommend Kochi's model because ________ <em>(45% / 28%)</em> of its household waste is converted to compost, the highest among all cities surveyed.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">What does 'improper disposal' mean in the context of paragraph 3?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Complete the following with the correct option. When the writer says <em>'correlates closely'</em> in paragraph 3, s/he means that ____.</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>improper disposal is entirely unrelated to waste collection infrastructure</div><div class="option"><span class="opt-label">B</span>there is a strong and consistent relationship between poor waste collection and high rates of improper disposal</div><div class="option"><span class="opt-label">C</span>improper disposal causes the collapse of door-to-door collection systems</div><div class="option"><span class="opt-label">D</span>cities with the best awareness campaigns always have zero improper disposal</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Complete the following appropriately. Although Lucknow sends over 60% of its waste to landfills, one plausible reason for this is ____________________.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">How are 'community engagement' and 'sustainable waste management' connected? (Paragraph 4)</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">Elaborate why achieving zero-waste cities by 2035 requires a combination of infrastructure investment AND public education, rather than either alone. (Paragraph 4)</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IX</span><span class="sub-q-text">Fill in the blank with ONE suitable word. (Paragraph 4)<br>Cities that invest in waste management infrastructure and community education are better ________ to achieve their sustainability targets.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION B SET2 -->
+  <div class="section-block">
+    <div class="section-header grammar">✏️ Section B — Grammar &amp; Creative Writing Skills <span class="section-marks">20 Marks</span></div>
+    <div class="section-header grammar" style="margin-top:-10px;font-size:12px;">Grammar <span class="section-marks">10 Marks</span></div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num purple-num">3</div>
+        <div class="q-instr">Complete any <strong>ten of twelve</strong> of the following tasks, as directed.</div>
+        <div class="q-marks" style="background:rgba(139,92,246,0.1);color:#7c3aed;">10 marks</div>
+      </div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Fill in the blank using the correct form of the word in the bracket for the given sentence from a science magazine:<br><em>The researchers _____ (conduct) three trials before publishing their final results.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q">
+            <div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Identify the error and write the correction in the given sentence from a health awareness pamphlet:<br><em>'Regular exercise are necessary for maintaining a healthy lifestyle.'</em></span></div>
+            <div class="sub-q-marks">1</div>
+            <div style="margin-top:10px;overflow-x:auto;"><table class="fill-table"><tr><th class="fill-cell">Error</th><th class="fill-cell">Correction</th></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></table></div>
+          </li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Fill in the blank with the correct form of the verb given in the brackets.<br><em>She _____ (study) for the examination for three hours when the power went out suddenly.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Read the given statement and report it correctly:<br><em>The doctor said to the patient, 'You should rest completely for the next two weeks.'</em><br>The doctor advised the patient that _____.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">Fill in the blank by choosing the correct option to complete the sentence from a school circular:<br><em>The annual science fair will provide students _____ an opportunity to showcase their innovative projects.</em></span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>of</div><div class="option"><span class="opt-label">B</span>with</div><div class="option"><span class="opt-label">C</span>for</div><div class="option"><span class="opt-label">D</span>about</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VI</span><span class="sub-q-text">Report the following by completing the sentence correctly:<br><em>'Never leave your valuables unattended at the airport,' the officer warned the passengers.</em><br>The officer warned the passengers _____.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VII</span><span class="sub-q-text">Complete the given opinion by filling the blank with the correct option:<br><em>The committee found the new policy proposal _____ with the existing constitutional framework.</em></span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>to conflict</div><div class="option"><span class="opt-label">B</span>conflicting</div><div class="option"><span class="opt-label">C</span>conflicted</div><div class="option"><span class="opt-label">D</span>conflicts</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">VIII</span><span class="sub-q-text">The given sentence has an error. Select the option that correctly identifies the error and the correction:<br><em>The informations provided in the report were found to be inaccurate.</em></span></div><div class="sub-q-marks">1</div><div class="options" style="padding-left:0;"><div class="option"><span class="opt-label">A</span>Error: <em>The</em> → Correction: <em>A</em></div><div class="option"><span class="opt-label">B</span>Error: <em>informations</em> → Correction: <em>information</em></div><div class="option"><span class="opt-label">C</span>Error: <em>were</em> → Correction: <em>are</em></div><div class="option"><span class="opt-label">D</span>Error: <em>inaccurate</em> → Correction: <em>accurate</em></div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IX</span><span class="sub-q-text">Report the following question:<br><em>She asked her brother, 'Will you be attending the felicitation ceremony tomorrow?'</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">X</span><span class="sub-q-text">Fill in the blank with the correct option from those given in the brackets:<br><em>You _____ (need not / must not) carry a dictionary to the examination hall as it is strictly prohibited.</em></span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">XI</span><span class="sub-q-text">Fill in the blank to complete the sentence from an announcement by choosing the correct option:<br><em>_____ participant who has registered for the marathon must collect their bib number before 7:00 a.m. on race day.</em></span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>Some</div><div class="option"><span class="opt-label">B</span>Each</div><div class="option"><span class="opt-label">C</span>Many</div><div class="option"><span class="opt-label">D</span>Few</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">XII</span><span class="sub-q-text">Choose the correct option to fill the blank:<br><em>There were _____ applicants for the scholarship, so the selection committee had an easy task.</em></span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>little</div><div class="option"><span class="opt-label">B</span>less</div><div class="option"><span class="opt-label">C</span>few</div><div class="option"><span class="opt-label">D</span>fewer than</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-header writing" style="margin-top:20px;">✍️ Writing <span class="section-marks">10 Marks</span></div>
+    <div class="notice-bar" style="border-radius:8px;margin-bottom:16px;font-size:12px;">NOTE: All details presented in the questions in the writing section are imaginary and created for assessment purposes.</div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num" style="background:#4caf50;">4A</div>
+        <div class="q-instr">Letter Writing — Choose <strong>either 4A or 4B</strong></div>
+        <div class="q-marks" style="background:rgba(76,175,80,0.1);color:#2e7d32;">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <div class="long-ans-box">As <strong>Kavitha/Kiran</strong>, the Secretary of your school's Environment Committee, you have observed that the volume of food waste generated in your school's canteen has increased significantly. Write a letter to the <strong>Principal</strong>, in about 120 words, highlighting the environmental and economic consequences of food waste, and suggesting practical steps such as composting, menu rationalisation, and student awareness campaigns. <span class="word-limit">~120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">As <strong>Arnav/Ananya</strong>, a concerned citizen of Greenfield Township, you have noticed that residents are increasingly dumping construction debris and household waste in the public park near your neighbourhood. Write a letter to the <strong>editor of a local newspaper</strong>, in about 120 words, explaining the dangers of this practice and urging the municipal authorities and citizens to take immediate corrective action. <span class="word-limit">~120 words</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head">
+        <div class="q-num" style="background:#4caf50;">5A</div>
+        <div class="q-instr">Analytical Paragraph — Choose <strong>either 5A or 5B</strong></div>
+        <div class="q-marks" style="background:rgba(76,175,80,0.1);color:#2e7d32;">5 marks</div>
+      </div>
+      <div class="q-card-body">
+        <p style="font-size:14px;margin-bottom:14px;">You are the organiser of your school's annual Science Exhibition. Two science communicators—<strong>Dr. Kavya Pillai</strong> and <strong>Mr. Ashwin Mehta</strong>—have expressed interest in delivering the keynote address.</p>
+        <div class="profile-card">
+          <div class="profile-name"><span>Excerpt 1</span> — Dr. Kavya Pillai</div>
+          <em>"…I am a research scientist with a PhD in environmental chemistry and fifteen years of experience in science communication. I have delivered keynote addresses at national and international science festivals, and my talks are known for making complex scientific concepts accessible to school students. I believe science education must connect to real-world environmental challenges, and my address will focus on how young people can contribute to solving India's climate crisis through scientific thinking…"</em>
+        </div>
+        <div class="profile-card">
+          <div class="profile-name"><span>Excerpt 2</span> — Mr. Ashwin Mehta</div>
+          <em>"…As a science journalist and popular science writer, I have spent the last decade bridging the gap between cutting-edge research and public understanding. My keynote will focus on how scientific curiosity has driven India's greatest technological achievements, from ISRO's missions to medical breakthroughs. I have a proven ability to captivate young audiences through storytelling, humour, and live demonstrations, and I have been awarded the National Science Popularisation Award twice…"</em>
+        </div>
+        <div class="long-ans-box" style="margin-top:14px;">Analyse the information in a paragraph, justifying which speaker would be a better keynote choice for the school's Science Exhibition. Consider factors such as relevance to the exhibition theme, ability to engage student audiences, and breadth of expertise. <span class="word-limit">~120 words</span></div>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:14px;margin-bottom:14px;"><strong>Fatima</strong>, Class X, is passionate about history, has excellent research skills, and expresses herself very well in writing. However, she finds public speaking uncomfortable and tends to work best alone. She must choose a partner for a <em>History-Drama project</em> requiring historical research, script writing, and a live performance.</p>
+        <div class="profile-card"><div class="profile-name"><span>Divya</span></div>An enthusiastic performer with a natural flair for drama. She is confident on stage and has excellent improvisation skills. However, she tends to prioritise entertainment over historical accuracy and struggles to meet research deadlines.</div>
+        <div class="profile-card"><div class="profile-name"><span>Riya</span></div>A methodical worker who researches thoroughly and writes clearly. She is disciplined with deadlines. However, she is quiet and reluctant to perform publicly, much like Fatima herself.</div>
+        <div class="profile-card"><div class="profile-name"><span>Leo</span></div>A versatile student with good stage presence who also reads widely. He is a team player and respects the perspectives of his partners. He may not be the strongest researcher, but he compensates with communication skills and a collaborative spirit.</div>
+        <div class="long-ans-box" style="margin-top:14px;">Based on the features of each candidate, analyse and decide who would be the best partner for Fatima. Consider aspects such as complementary strengths, teamwork, and the project's requirements. <span class="word-limit">~120 words</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION C SET2 -->
+  <div class="section-block">
+    <div class="section-header literature">📚 Section C — Literature Textbook <span class="section-marks">40 Marks</span></div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">6</div><div class="q-instr">Read the given extracts A and B and answer <strong>ANY ONE</strong> of the two.</div><div class="q-marks gold">5 marks</div></div>
+      <div class="q-card-body">
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT A — Prose</p>
+        <div class="extract">
+          Suddenly Mij seemed to take a decision. He trotted to the far end of the bathtub and looked expectantly at me. Then he turned to face the taps again, and began to climb back. After a second in which he seemed to be making up his mind, he slid back down the side and in. I was delighted. He had learned something new and I had the feeling that life with Mij was going to be full of surprises.
+          <div class="extract-source">Mijbil the Otter — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">What does the phrase 'took a decision' suggest about Mij's nature? How does it humanise him?</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Select the correct option. The narrator's phrase 'life with Mij was going to be full of surprises' primarily suggests that:</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">a</span>the narrator was nervous about Mij's unpredictable behaviour</div><div class="option"><span class="opt-label">b</span>the narrator was delighted by Mij's intelligence and looked forward to their relationship</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">What does the detail of Mij looking 'expectantly' at the narrator reveal about the otter's social behaviour?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Which word in the extract most effectively conveys the narrator's emotional response to Mij's behaviour?</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT B — Prose</p>
+        <div class="extract">
+          Bholi was left standing all alone in the vast hall. The teacher had gone out. Bholi stood and stared at the pictures on the wall—pictures of animals, plants, and a map of the world. They seemed to be telling her something in a language she did not understand. Then the teacher came back and stood beside her. 'What is your name, little one?' she asked in a very gentle voice. Bholi's lips trembled. For the first time in her life, someone had spoken to her with kindness. The tears came rolling down her cheeks.
+          <div class="extract-source">Bholi — Footprints Without Feet</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">What does the image of Bholi standing 'all alone in the vast hall' symbolise about her position in society? Support your answer.</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Select the correct option. Bholi's tears at the teacher's kind words primarily indicate:</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">a</span>her deep grief over leaving her family home</div><div class="option"><span class="opt-label">b</span>her overwhelming emotional response to experiencing kindness for the first time</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">What does the description of the pictures in the hall—animals, plants, and a map—suggest symbolically about Bholi's future?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Identify the phrase in the extract that most directly conveys the teacher's compassionate personality.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">7</div><div class="q-instr">Read the given extracts A and B and answer <strong>ANY ONE</strong> of the two.</div><div class="q-marks gold">5 marks</div></div>
+      <div class="q-card-body">
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT A — Poetry</p>
+        <div class="poetry-extract">
+          <span class="poetry-line">O, why do you walk through the fields in gloves,</span>
+          <span class="poetry-line">Missing so much and so much?</span>
+          <span class="poetry-line">O fat white woman whom nobody loves,</span>
+          <span class="poetry-line">Why do you walk through the fields in gloves,</span>
+          <span class="poetry-line">When the grass is soft as the breast of doves</span>
+          <span class="poetry-line">And shivering sweet to the touch?</span>
+          <div class="poetry-source">To a Fat Lady Seen from a Train (tonal study) — studied as part of humour and tone in poetry</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">Select the option that best explains what the poet implies by <em>'Missing so much and so much'</em>.</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>The woman is losing her gloves frequently and failing to find them</div><div class="option"><span class="opt-label">B</span>By protecting herself from direct experience of nature, she is forfeiting the sensory richness of life</div><div class="option"><span class="opt-label">C</span>She is missing important social events by walking through the fields</div><div class="option"><span class="opt-label">D</span>She is too poor to afford proper walking shoes and misses comfort</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">Analyse the contrast the poet creates between the 'fat white woman in gloves' and the 'soft grass'. What does this contrast reveal about the poem's message?</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Identify the simile in the extract and comment on its effect.</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Fill in the blank with a phrase:<br>The repeated question 'why do you walk through the fields in gloves' suggests the poet's sense of _______ at the woman's self-imposed separation from nature.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+
+        <div class="or-divider"><div class="or-text">OR</div></div>
+
+        <p style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:10px;">EXTRACT B — Poetry</p>
+        <div class="poetry-extract">
+          <span class="poetry-line">I want to be Anne,</span>
+          <span class="poetry-line">For I know you'd weave</span>
+          <span class="poetry-line">A little golden ring</span>
+          <span class="poetry-line">Of my hair, make them change their tune,</span>
+          <span class="poetry-line">I shall weave them all</span>
+          <span class="poetry-line">And they would not care</span>
+          <span class="poetry-line">About the great honey-coloured</span>
+          <span class="poetry-line">Ramparts at your ear,</span>
+          <span class="poetry-line">Young men or their throwing-down.</span>
+          <div class="poetry-source">For Anne Gregory — First Flight</div>
+        </div>
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">What does the speaker's wish to 'weave a little golden ring' out of Anne's hair reveal about how human beings typically form attachments?</span></div><div class="sub-q-marks">1</div><div class="options"><div class="option"><span class="opt-label">A</span>Human beings value others for their physical beauty and external qualities</div><div class="option"><span class="opt-label">B</span>Human beings love others for their inner qualities and soul alone</div><div class="option"><span class="opt-label">C</span>Human beings are indifferent to both beauty and character in forming relationships</div><div class="option"><span class="opt-label">D</span>Human beings are primarily concerned with wealth when choosing partners</div></div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">What is the deeper irony in the speaker claiming Anne can 'make them change their tune'? Explain in the context of the poem's central theme.</span></div><div class="sub-q-marks">2</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">What does the phrase <em>'honey-coloured ramparts'</em> refer to in the context of the poem?</span></div><div class="sub-q-marks">1</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">Identify the phrase in the extract that suggests that external appearance causes emotional conflict among young men.</span></div><div class="sub-q-marks">1</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">8</div><div class="q-instr">Answer <strong>ANY FOUR</strong> of the following five questions, in about 50 words each. <em>(First Flight)</em></div><div class="q-marks gold">4×3 = 12 marks</div></div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">How does the poet use the extended metaphor of the fog as a cat in 'Fog' to convey the idea of life's quiet and inevitable transitions? What deeper philosophical message does the poem carry?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">In 'A Letter to God', Lencho's unshakeable faith in God is contrasted with his total lack of trust in his fellow human beings. Analyse the irony this creates and what it reveals about the nature of faith versus human charity.</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">Maxwell's account in 'Mijbil the Otter' reveals that caring for an unusual pet requires patience, adaptability, and a willingness to be surprised. How does the anecdote of Mij in the bath support all three of these qualities?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">IV</span><span class="sub-q-text">In 'For Anne Gregory', Yeats distinguishes between love for a person's soul and love for their outward appearance. How does he use the device of dialogue to develop this theme?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">V</span><span class="sub-q-text">In 'Two Stories About Flying', both the young seagull and the narrator in 'Black Aeroplane' experience a moment of absolute trust. How does this shared theme reveal the importance of letting go of fear?</span></div><div class="sub-q-marks">3</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">9</div><div class="q-instr">Answer <strong>ANY TWO</strong> of the following three questions, in about 40–50 words. <em>(Footprints Without Feet)</em></div><div class="q-marks gold">2×3 = 6 marks</div></div>
+      <div class="q-card-body">
+        <ul class="sub-questions">
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">I</span><span class="sub-q-text">In 'The Midnight Visitor', how does Ausable's ability to think quickly and use the power of suggestion demonstrate that intelligence is a more effective tool than brute force in handling danger?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">II</span><span class="sub-q-text">In 'A Question of Trust', Horace Danby considers himself a 'good' and 'respectable' thief. How does the ending of the story expose the hollowness of this self-image?</span></div><div class="sub-q-marks">3</div></li>
+          <li class="sub-q"><div class="sub-q-top"><span class="sub-q-label">III</span><span class="sub-q-text">How does the setting of 'Bholi'—a rural Indian village in the early post-independence period—both create and reinforce the challenges that Bholi faces? Could the story have the same impact in a contemporary urban setting?</span></div><div class="sub-q-marks">3</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">10</div><div class="q-instr">Answer <strong>ANY ONE</strong> of the following two questions, in about 100–120 words. <em>(First Flight)</em></div><div class="q-marks gold">1×6 = 6 marks</div></div>
+      <div class="q-card-body">
+        <div class="long-ans-box">Both <strong>Lencho</strong> in 'A Letter to God' and <strong>Matilda Loisel</strong> in 'The Necklace' face devastating loss that transforms their lives. Compare the two characters in terms of their responses to adversity, their worldview, and what their stories reveal about the human tendency to place blind faith—whether in God, material possessions, or social status—at the cost of realism. <span class="word-limit">~100–120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">The poem <strong>'The Trees'</strong> (Adrienne Rich) and <strong>'A Letter to God'</strong> both explore the themes of confinement and liberation. Compare how the two texts—one a poem and one a prose piece—use setting, imagery, and human action to reflect on whether freedom, once lost, can truly be regained. <span class="word-limit">~100–120 words</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-head"><div class="q-num gold-num">11</div><div class="q-instr">Answer <strong>ANY ONE</strong> of the following two questions, in about 100–120 words. <em>(Footprints Without Feet)</em></div><div class="q-marks gold">1×6 = 6 marks</div></div>
+      <div class="q-card-body">
+        <div class="long-ans-box">In <strong>'The Midnight Visitor'</strong>, Fowler expects espionage to be dramatic and dangerous. Instead, he discovers that real intelligence work depends on ordinary wit and calm composure. How does Satyajit's story subvert the popular notion of the glamorous spy? Examine the role of irony and misdirection in this transformation of expectation. <span class="word-limit">~100–120 words</span></div>
+        <div class="or-divider"><div class="or-text">OR</div></div>
+        <div class="long-ans-box">In <strong>'A Triumph of Surgery'</strong>, Dr. Herriot operates not just as a medical professional but as a moral guide who gently educates Mrs. Pumphrey about the consequences of misplaced love. How does the story use humour, irony, and veterinary expertise to convey its message about responsible pet ownership? What does it suggest about the relationship between love and wisdom? <span class="word-limit">~100–120 words</span></div>
+      </div>
+    </div>
+
+  </div><!-- end section C set2 -->
+</div><!-- end set2 -->
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<footer>
+  <span>A</span>SHANT<span>I</span>I Guess Papers &nbsp;·&nbsp; CBSE Class X English Language &amp; Literature (Code 184) &nbsp;·&nbsp; Session 2025–26 &nbsp;·&nbsp; All content created for academic assessment purposes.
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  function switchPaper(id, btn) {
+    document.querySelectorAll('.paper-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({top: document.getElementById('tabNav').offsetTop - 10, behavior: 'smooth'});
+  }
+
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+</body>
+</html>
